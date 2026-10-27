@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Я разбираю повтор запроса",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "tests/test_api.py::test_repeat_does_not_double_refund",
+        "-s",
+        "-v"
+      ],
+      "cwd": "${workspaceFolder}",
+      "justMyCode": true
+    },
+    {
+      "name": "Я отлаживаю API",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "refund_api",
+      "args": [
+        "--db",
+        "workspace/debug.db",
+        "--port",
+        "8766"
+      ],
+      "cwd": "${workspaceFolder}",
+      "justMyCode": true
+    }
+  ]
+}

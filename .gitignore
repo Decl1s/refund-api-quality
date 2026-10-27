@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+reports/
+workspace/
+artifacts/
+AGENTS.md
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
