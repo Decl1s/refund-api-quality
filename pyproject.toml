@@ -1,6 +1,6 @@
 [project]
 name = "refund-api-quality"
-version = "0.1.0"
+version = "0.1.1"
 description = "Я проверяю частичные возвраты: API, идемпотентность и конкуренция"
 requires-python = ">=3.12,<3.13"
 dependencies = ["fastapi==0.162.0", "uvicorn==0.54.0"]

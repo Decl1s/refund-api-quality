@@ -13,7 +13,7 @@ def refund(client, amount=3000, *, key="retry-1", currency="RUB", order_id="DEMO
 
 
 def test_health_and_openapi(client):
-    assert client.get("/health").json() == {"status": "ok", "version": "0.1.0"}
+    assert client.get("/health").json() == {"status": "ok", "version": "0.1.1"}
     schema = client.get("/openapi.json").json()
     assert set(schema["paths"]) == {"/health", "/orders", "/orders/{order_id}", "/orders/{order_id}/refunds"}
     assert client.get("/docs").status_code == 200

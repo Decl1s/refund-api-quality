@@ -9,7 +9,7 @@ from urllib.request import Request,urlopen
 from package_release import ROOT,archive
 
 REPOSITORY='Decl1s/refund-api-quality'
-TAG='v0.1.0'
+TAG='v0.1.1'
 
 def main():
     if os.environ.get('GITHUB_REPOSITORY')!=REPOSITORY or os.environ.get('GITHUB_REF')!='refs/heads/main' or os.environ.get('GITHUB_EVENT_NAME')!='push':raise ValueError('RELEASE_CONTEXT')
@@ -34,7 +34,7 @@ def main():
         if error.code!=404:raise
         drafts=[r for r in api('/releases?per_page=100') if r['tag_name']==TAG]
         if len(drafts)>1:raise ValueError('RELEASE_AMBIGUOUS_DRAFT')
-        release=drafts[0] if drafts else api('/releases',method='POST',value={'tag_name':TAG,'target_commitish':sha,'name':'Мой QA-стенд возвратов 0.1.0','draft':True,'prerelease':False,'body':'Я выпускаю учебный QA-стенд частичных возвратов: FastAPI, SQLite, pytest и Hypothesis. Я проверяю HTTP-контракт, суммы, идемпотентность, конкуренцию, откат и перезапуск; три контролируемые мутации показывают обнаружение дефектов. Тест-план — TEST_PLAN.md, разбор и упражнения — NOTES.md, фактические проверки — VALIDATION и Actions. ZIP содержит только разрешённые исходники без БД, отчётов, окружения и контактов.'})
+        release=drafts[0] if drafts else api('/releases',method='POST',value={'tag_name':TAG,'target_commitish':sha,'name':'Мой QA-стенд возвратов 0.1.1','draft':True,'prerelease':False,'body':'Я обновил навигацию документации и согласовал patch-версию исходного архива. Бизнес-правила и зависимости я сохранил. Я выпускаю учебный QA-стенд частичных возвратов: FastAPI, SQLite, pytest и Hypothesis. Я проверяю HTTP-контракт, суммы, идемпотентность, конкуренцию, откат и перезапуск; три контролируемые мутации показывают обнаружение дефектов. Тест-план — TEST_PLAN.md, разбор и упражнения — NOTES.md, фактические проверки — VALIDATION и Actions. ZIP содержит только разрешённые исходники без БД, отчётов, окружения и контактов.'})
     if release['target_commitish']!=sha:raise ValueError('RELEASE_TARGET_CONFLICT')
     rid=release['id'];existing={v['name']:v for v in api('/releases/'+str(rid)+'/assets')}
     for name in (evidence['archive'],'SHA256SUMS'):
